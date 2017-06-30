@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Login</ui:define>
+        <ui:define name="north">
+            <p:layoutUnit position="north" size="50" style="text-align: center">
+                <p:outputLabel value="Login"></p:outputLabel>
+            </p:layoutUnit>
+        </ui:define>
+        <ui:define name="center">
+            <p:layoutUnit position="center">
+                <b:container  id="formNome">
+                    <p:outputLabel value="#{controleUsuario.erro}"/>
+                    <h:form>
+                        <br/> 
+                        <h:panelGrid columns="2" cellpadding="100">
+                            <p:outputLabel value="Nome" for="nome"/>
+                            <p:inputText id="nome" value="#{controleUsuario.beanUsuario.nome}" 
+                                         required="true" requiredMessage="Obrigatorio">
+                                <p:ajax update="msgName" event="keyup" />
+                            </p:inputText>
+                            <p:outputLabel value="Senha" for="senha"/>
+                            <p:password id="senha" value="#{controleUsuario.beanUsuario.senha}" 
+                                         required="true" requiredMessage="Obrigatorio">
+                                <p:ajax update="msgName" event="keyup" />
+                            </p:password>
+                            <p:message for="nome" id="msgName"/>
+                            <br/> <br/> <br/>
+                            <p:commandButton value="Acessar" action="#{controleUsuario.inicia()}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </b:container>
+            </p:layoutUnit>
+        </ui:define>
+    </ui:composition>
+</html>
